@@ -4,7 +4,7 @@
 收缩路径block
     卷积卷积relu --bridge左侧的蓝色小箭头 
     下采样部分 -- bridge左侧的红色小箭头
-扩张路径block
+class 扩张路径block
     反卷积 --bridge右侧绿色小箭头
     卷积块+relu+batchnorm （跟收缩差不多的组合）--bridge右侧蓝色小箭头
     过度通道（for 拼接） --bridge右侧白蓝相间拼接后的特征图，往下卷的那个小箭头
