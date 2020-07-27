@@ -104,8 +104,8 @@ class Fusionnet(nn.Module):
         bridge = self.bridge(pool_4)
 
         deconv_1 = self.deconv_1(bridge)
-        skip_1 = (deconv_1 + down_4) / 2
-        up_1 = self.up_1(skip_1)
+        skip_1 = (deconv_1 + down_4) / 2  #因为原图是竖着的，就用顺序encode+顺序decode，就很类
+        up_1 = self.up_1(skip_1)          #所以还是要沿用Unet那种 顺序encode+逆序decode，比较方便写skip
         deconv_2 = self.deconv_2(up_1)
         skip_2 = (deconv_2 + down_3) / 2
         up_2 = self.up_2(skip_2)
@@ -124,7 +124,7 @@ class Fusionnet(nn.Module):
 if __name__ == "__main__":
 
     rgb = torch.randn(1, 3, 352, 480)
-    net = Fusionnet(3, 12, 64)
+    net = Fusionnet(3, 12, 64)  #这个64就是上面的out_dim
     out = net(rgb)
     print(out.shape)
 
