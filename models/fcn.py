@@ -71,10 +71,11 @@ def bilinear_kernel(in_channels, out_channels, kernel_size):
 
 pretrained_net = models.vgg16_bn(pretrained=False)
 
-#FCN本人
+#FCN本人 对应fcn.png
 class FCN(nn.Module):
     def __init__(self, num_classes):
-        super().__init__()
+        super().__init__() #关于torch中super用法 #https://blog.csdn.net/genous110/article/details/90105497
+        
 
         self.stage1 = pretrained_net.features[:7]
         self.stage2 = pretrained_net.features[7:14]
